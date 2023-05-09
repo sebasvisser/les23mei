@@ -1,7 +1,4 @@
-
-
 // Huiswerk Opdracht Dollar Euro Converter met input via Scanner
-// Wisselkoers:
 
 /*
 Pseudo Stappen plan:
@@ -9,9 +6,7 @@ Pseudo Stappen plan:
 2 inpput van gebruiker opvragen
 3 conversie functie
 4 print functie
-
-
- */
+*/
 // IMPORTS
 import java.util.Scanner;
 
@@ -26,21 +21,36 @@ public class Main {
         double euroToDollar = 1.09;
 
         // Scanner aanmaken voor bedrag
-        Scanner scannerAmount = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         // Input van gebruiker vragen en toekennen aan variabele
         System.out.println("Welk bedrag wil je omrekenen?");
-        userAmount = scannerAmount.nextDouble();
-        scannerAmount.close();
+        userAmount = scanner.nextDouble();
         // Bevestiging van input
         System.out.println("Je hebt ingegeven dat je: " + userAmount + "wilt converteren.");
 
-        // Scanner aanmaken voor bedrag
-        Scanner scannerCurrency = new Scanner(System.in);
         // Input van gebruiker vragen en toekennen aan variabele
         System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar of Euro?");
-        userCurrency = scannerCurrency.next();
-        scannerCurrency.close();
+        userCurrency = scanner.next();
+        scanner.close();
         // Bevestiging van input
-        System.out.println("Je hebt ingegeven dat je: " + userCurrency + "hebt en wilt omzetten.");
+        switch (userCurrency) {
+            case "d":
+            case "dollar":
+            case "D":
+            case "Dollar":
+            case "dolar":
+                System.out.println("Je hebt ingegeven dat je DOLLAR hebt en wilt omzetten naar EURO.");
+                break;
+            case "e":
+            case "euro":
+            case "E":
+            case "Euro":
+            case "euo":
+                System.out.println("Je hebt ingegeven dat je EURO hebt en wilt omzetten naar DOLLAR.");
+                break;
+            default:
+                System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent. Doei.");
+                break;
+        }
     }
 }
