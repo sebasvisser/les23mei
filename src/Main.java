@@ -19,14 +19,14 @@ public class Main {
         // Constante Variabele aanmaken voor functie
         double euroToDollar = 1.09;
 
-        // Scanner aanmaken
+        // Scanner aanmaken voor bedrag
         Scanner scannerAmount = new Scanner(System.in);
         // Input van gebruiker vragen en toekennen aan variabele
-        System.out.println("Hoeveel euro wil je omzetten naar dollar?");
+        System.out.println("Welk bedrag wil je omrekenen?");
         userAmount = scannerAmount.nextDouble();
         scannerAmount.close();
         // Bevestiging van input
-        System.out.println("Je hebt ingegeven dat je: €" + userAmount + "wilt converteren naar dollar.");
+        System.out.println("Je hebt ingegeven dat je: " + userAmount + "wilt converteren.");
 
     }
 }
