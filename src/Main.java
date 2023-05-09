@@ -2,10 +2,13 @@
 // Wisselkoers:
 
 /*
-Pseudo Stappen plan
+Pseudo Stappen plan:
+1Variabelen aanmaken: Koers, Euro amount, Dollar Amount, Input van Gebruiker
+2 inpput van gebruiker opvragen
+3 conversie functie
+4 print functie
 
- */
-*/
+
  */
 public class Main {
     public static void main(String[] args) {
