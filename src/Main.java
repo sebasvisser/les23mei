@@ -13,9 +13,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        double userAmount;
+        double userAmount = 0.0;
         boolean validUserAmount = false;
-        String userCurrency;
+        String userCurrency = "";
         boolean validUserCurrency = false;
         String otherCurrency = "";
         boolean validOtherCurrency = false;
@@ -31,141 +31,163 @@ public class Main {
 
         // Scanner aanmaken voor bedrag
         Scanner scanner = new Scanner(System.in);
-        // TODO WHILE LOOP TOT GOEDE INPUT
-        // Input van gebruiker vragen en toekennen aan variabele
-        System.out.println("Welk bedrag wil je omrekenen?");
-        userAmount = scanner.nextDouble();
-        // Bevestiging van input
-        System.out.println("Je hebt ingegeven dat je: " + userAmount + " wilt converteren.");
 
-        // Input van gebruiker vragen en toekennen aan variabele currency
-        System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar, Euro, Pond, Yen of Bitcoin?");
-        userCurrency = scanner.next();
+        // Start valuta opvragen tot geldige input komt
+        while (!validUserCurrency){
+            System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar, Euro, Pond, Yen of Bitcoin?");
+            userCurrency = scanner.next();
+            switch (userCurrency) {
+                case "d":
+                case "dollar":
+                case "D":
+                case "Dollar":
+                case "dolar":
+                case "$":
+                    System.out.println("Je hebt ingegeven dat je DOLLAR hebt.");
+                    userCurrency = "dollar";
+                    validUserCurrency = true;
+                    break;
+                case "e":
+                case "euro":
+                case "E":
+                case "Euro":
+                case "euo":
+                case "€":
+                    System.out.println("Je hebt ingegeven dat je EURO hebt.");
+                    userCurrency = "dollar";
+                    validUserCurrency = true;
+                    break;
+                case "p":
+                case "pond":
+                case "P":
+                case "Pond":
+                case "pound":
+                case "Pound":
+                case "£":
+                    System.out.println("Je hebt ingegeven dat je POND hebt.");
+                    userCurrency = "pond";
+                    validUserCurrency = true;
+                    break;
+                case "y":
+                case "yen":
+                case "Y":
+                case "Yen":
+                case "jen":
+                case "Jen":
+                case "¥":
+                    System.out.println("Je hebt ingegeven dat je YEN hebt.");
+                    userCurrency = "yen";
+                    validUserCurrency = true;
+                    break;
+                case "b":
+                case "btc":
+                case "B":
+                case "Bitcoin":
+                case "bitcoin":
+                case "BTC":
+                case "₿":
+                    System.out.println("Je hebt ingegeven dat je BITCOIN hebt.");
+                    userCurrency = "bitcoin";
+                    validUserCurrency = true;
+                    break;
+                default:
+                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent. Doei.");
+                    break;
+            }
+        }
 
-        // Bevestiging van input
-        switch (userCurrency) {
-            case "d":
-            case "dollar":
-            case "D":
-            case "Dollar":
-            case "dolar":
-            case "$":
-                System.out.println("Je hebt ingegeven dat je DOLLAR hebt.");
-                userCurrency = "dollar";
-                validUserCurrency = true;
-                break;
-            case "e":
-            case "euro":
-            case "E":
-            case "Euro":
-            case "euo":
-            case "€":
-                System.out.println("Je hebt ingegeven dat je EURO hebt.");
-                userCurrency = "dollar";
-                validUserCurrency = true;
-                break;
-            case "p":
-            case "pond":
-            case "P":
-            case "Pond":
-            case "pound":
-            case "Pound":
-            case "£":
-                System.out.println("Je hebt ingegeven dat je POND hebt.");
-                userCurrency = "pond";
-                validUserCurrency = true;
-                break;
-            case "y":
-            case "yen":
-            case "Y":
-            case "Yen":
-            case "jen":
-            case "Jen":
-            case "¥":
-                System.out.println("Je hebt ingegeven dat je YEN hebt.");
-                userCurrency = "yen";
-                validUserCurrency = true;
-                break;
-            case "b":
-            case "btc":
-            case "B":
-            case "Bitcoin":
-            case "bitcoin":
-            case "BTC":
-            case "₿":
-                System.out.println("Je hebt ingegeven dat je BITCOIN hebt.");
-                userCurrency = "bitcoin";
-                validUserCurrency = true;
-                break;
-            default:
-                System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent. Doei.");
-                break;
+        // Doel valuta opvragen tot geldige input komt
+        while (!validOtherCurrency){
+            System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar, Euro, Pond, Yen of Bitcoin?");
+            otherCurrency = scanner.next();
+            switch (otherCurrency) {
+                case "d":
+                case "dollar":
+                case "D":
+                case "Dollar":
+                case "dolar":
+                case "$":
+                    System.out.println("Je hebt om wilt rekenen naar DOLLAR.");
+                    otherCurrency = "dollar";
+                    validOtherCurrency = true;
+                    break;
+                case "e":
+                case "euro":
+                case "E":
+                case "Euro":
+                case "euo":
+                case "€":
+                    System.out.println("Je hebt om wilt rekenen naar EURO.");
+                    otherCurrency = "euro";
+                    validOtherCurrency = true;
+                    break;
+                case "p":
+                case "pond":
+                case "P":
+                case "Pond":
+                case "pound":
+                case "Pound":
+                case "£":
+                    System.out.println("Je hebt ingegeven dat je POND.");
+                    otherCurrency = "pond";
+                    validOtherCurrency = true;
+                    break;
+                case "y":
+                case "yen":
+                case "Y":
+                case "Yen":
+                case "jen":
+                case "Jen":
+                case "¥":
+                    System.out.println("Je hebt om wilt rekenen naar YEN.");
+                    otherCurrency = "yen";
+                    validOtherCurrency = true;
+                    break;
+                case "b":
+                case "btc":
+                case "B":
+                case "Bitcoin":
+                case "bitcoin":
+                case "BTC":
+                case "₿":
+                    System.out.println("Je hebt om wilt rekenen naar BITCOIN.");
+                    otherCurrency = "bitcoin";
+                    validOtherCurrency = true;
+                    break;
+                default:
+                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent. Doei.");
+                    break;
+            }
         }
-        // Input van gebruiker vragen en toekennen aan variabele
-        System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar, Euro, Pond, Yen of Bitcoin?");
-        otherCurrency = scanner.next();
-        switch (otherCurrency) {
-            case "d":
-            case "dollar":
-            case "D":
-            case "Dollar":
-            case "dolar":
-            case "$":
-                System.out.println("Je hebt om wilt rekenen naar DOLLAR.");
-                otherCurrency = "dollar";
-                validOtherCurrency = true;
-                break;
-            case "e":
-            case "euro":
-            case "E":
-            case "Euro":
-            case "euo":
-            case "€":
-                System.out.println("Je hebt om wilt rekenen naar EURO.");
-                otherCurrency = "euro";
-                validOtherCurrency = true;
-                break;
-            case "p":
-            case "pond":
-            case "P":
-            case "Pond":
-            case "pound":
-            case "Pound":
-            case "£":
-                System.out.println("Je hebt ingegeven dat je POND.");
-                otherCurrency = "pond";
-                validOtherCurrency = true;
-                break;
-            case "y":
-            case "yen":
-            case "Y":
-            case "Yen":
-            case "jen":
-            case "Jen":
-            case "¥":
-                System.out.println("Je hebt om wilt rekenen naar YEN.");
-                otherCurrency = "yen";
-                validOtherCurrency = true;
-                break;
-            case "b":
-            case "btc":
-            case "B":
-            case "Bitcoin":
-            case "bitcoin":
-            case "BTC":
-            case "₿":
-                System.out.println("Je hebt om wilt rekenen naar BITCOIN.");
-                otherCurrency = "bitcoin";
-                validOtherCurrency = true;
-                break;
-            default:
-                System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent. Doei.");
-                break;
+
+        // Bedrag (in start valuta) vragen tot geldige input
+        while(!validUserAmount){
+            // TODO De controle moet nog gefixt worden, nu komt een crash bij een niet double.
+            // Misschien next() en dan kijken of ik parse double kan doen?
+            System.out.println("Welk bedrag wil je omrekenen?");
+            userAmount = scanner.nextDouble();
+            validUserAmount = true;
         }
+
+        // Bevestiging van input compleet
+        System.out.println("Je hebt ingegeven dat je: "
+                + userAmount
+                + " wilt converteren van "
+                + userCurrency
+                + " naar "
+                + otherCurrency
+                + ".");
+
+        // Scanner netjes sluiten
         scanner.close();
+
         // TODO calculatedAmount nog afronden tot 2 decimalen om mooier te maken
+        // TODO Switch maken op basis van other currency en usercurrency
         calculatedAmount = userAmount * euroToDollar;
-        if (otherCurrency != ""){
+
+        // Output opbouwen
+        // 0.0 is de default waarde van een double
+        if (otherCurrency != "" && userCurrency != "" && userAmount != 0.0){
             System.out.println(userAmount
                     + " in "
                     + userCurrency
