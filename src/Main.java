@@ -20,7 +20,7 @@ public class Main {
         double bitcoinToDollar = 28258.70;
 
         // Berekende variabele aanmaken
-        double calculatedAmount;
+        double calculatedAmount = 0.0;
 
         // Scanner aanmaken voor bedrag
         Scanner scanner = new Scanner(System.in);
@@ -181,22 +181,102 @@ public class Main {
         // Scanner netjes sluiten
         scanner.close();
 
-        // TODO calculatedAmount nog afronden tot 2 decimalen om mooier te maken
-        // TODO Switch maken op basis van other currency en usercurrency
-        calculatedAmount = userAmount * euroToDollar;
+        // Bedrag berekenen
+        //TODO Controleren of rekenmethode echt werkt met delen door ding
+        switch(userCurrency) {
+            case "euro":
+                switch(otherCurrency) {
+                    case "dollar":
+                        calculatedAmount = userAmount * euroToDollar;
+                        break;
+                    case "pond":
+                        calculatedAmount = userAmount * euroToDollar / pondToDollar;
+                        break;
+                    case "yen":
+                        calculatedAmount = userAmount * euroToDollar / yenToDollar;
+                        break;
+                    case "bitcoin":
+                        calculatedAmount = userAmount * euroToDollar / bitcoinToDollar;
+                        break;
+                }
+                break;
+            case "dollar":
+                switch(otherCurrency) {
+                    case "euro":
+                        calculatedAmount = userAmount / euroToDollar;
+                        break;
+                    case "pond":
+                        calculatedAmount = userAmount / euroToDollar * pondToDollar;
+                        break;
+                    case "yen":
+                        calculatedAmount = userAmount / euroToDollar * yenToDollar;
+                        break;
+                    case "bitcoin":
+                        calculatedAmount = userAmount / euroToDollar * bitcoinToDollar;
+                        break;
+                }
+                break;
+            case "pond":
+                switch(otherCurrency) {
+                    case "dollar":
+                        calculatedAmount = userAmount * pondToDollar;
+                        break;
+                    case "euro":
+                        calculatedAmount = userAmount * pondToDollar / euroToDollar;
+                        break;
+                    case "yen":
+                        calculatedAmount = userAmount * pondToDollar / yenToDollar;
+                        break;
+                    case "bitcoin":
+                        calculatedAmount = userAmount * pondToDollar / bitcoinToDollar;
+                        break;
+                }
+                break;
+
+            case "yen":
+                switch(otherCurrency) {
+                    case "dollar":
+                        calculatedAmount = userAmount * yenToDollar;
+                        break;
+                    case "euro":
+                        calculatedAmount = userAmount * yenToDollar / euroToDollar;
+                        break;
+                    case "pond":
+                        calculatedAmount = userAmount * yenToDollar / pondToDollar;
+                        break;
+                    case "bitcoin":
+                        calculatedAmount = userAmount * yenToDollar / bitcoinToDollar;
+                        break;
+                }
+                break;
+
+            case "bitcoin":
+                switch(otherCurrency) {
+                    case "dollar":
+                        calculatedAmount = userAmount * bitcoinToDollar;
+                        break;
+                    case "euro":
+                        calculatedAmount = userAmount * bitcoinToDollar / euroToDollar;
+                        break;
+                    case "pond":
+                        calculatedAmount = userAmount * bitcoinToDollar / pondToDollar;
+                        break;
+                    case "yen":
+                        calculatedAmount = userAmount * bitcoinToDollar / yenToDollar;
+                        break;
+                }
+                break;
+        }
 
         // Output opbouwen
-        // 0.0 is de default waarde van een double
-        if (otherCurrency != "" && userCurrency != "" && userAmount != 0.0){
-            System.out.println(userAmount
+            System.out.println("=========\n=========\n"
+                    + userAmount
                     + " in "
                     + userCurrency
                     + " is "
                     + calculatedAmount
                     + " in "
-                    + otherCurrency);
-        } else {
-            System.out.println("Doei");
-        }
+                    + otherCurrency
+                    + "\n=========\n=========\n");
     }
 }
