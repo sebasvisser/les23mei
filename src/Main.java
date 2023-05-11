@@ -1,12 +1,5 @@
 // Huiswerk Opdracht Dollar Euro Converter met input via Scanner
 
-/*
-Pseudo Stappen plan:
-1Variabelen aanmaken: Koers, Euro amount, Dollar Amount, Input van Gebruiker
-2 inpput van gebruiker opvragen
-3 conversie functie
-4 print functie
-*/
 // IMPORTS
 import java.util.Scanner;
 
@@ -32,7 +25,7 @@ public class Main {
         // Scanner aanmaken voor bedrag
         Scanner scanner = new Scanner(System.in);
 
-        // Start valuta opvragen tot geldige input komt
+        // Eigen valuta opvragen tot geldige input komt
         while (!validUserCurrency){
             System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar, Euro, Pond, Yen of Bitcoin?");
             userCurrency = scanner.next();
@@ -91,7 +84,7 @@ public class Main {
                     validUserCurrency = true;
                     break;
                 default:
-                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent. Doei.");
+                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent.");
                     break;
             }
         }
@@ -149,24 +142,33 @@ public class Main {
                 case "Bitcoin":
                 case "bitcoin":
                 case "BTC":
+                case "bit":
                 case "₿":
                     System.out.println("Je hebt om wilt rekenen naar BITCOIN.");
                     otherCurrency = "bitcoin";
                     validOtherCurrency = true;
                     break;
                 default:
-                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent. Doei.");
+                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent.");
                     break;
             }
         }
 
-        // Bedrag (in start valuta) vragen tot geldige input
+        // Bedrag (in eigen valuta) vragen tot geldige input
         while(!validUserAmount){
             // TODO De controle moet nog gefixt worden, nu komt een crash bij een niet double.
             // Misschien next() en dan kijken of ik parse double kan doen?
             System.out.println("Welk bedrag wil je omrekenen?");
-            userAmount = scanner.nextDouble();
-            validUserAmount = true;
+            String input = scanner.next();
+            try {
+                userAmount = Double.parseDouble(input);
+                validUserAmount = true;
+
+            } catch (NumberFormatException e) {
+                System.out.println(input
+                        + " is geen bedrag. Goed dat je het is gelukt iets in te typen."
+                        + "\nLaten we het opnieuw proberen.");
+            }
         }
 
         // Bevestiging van input compleet
