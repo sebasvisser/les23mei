@@ -4,6 +4,7 @@
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
 
         double userAmount = 0.0;
@@ -12,12 +13,6 @@ public class Main {
         boolean validUserCurrency = false;
         String otherCurrency = "";
         boolean validOtherCurrency = false;
-
-        // Constante Variabele aanmaken voor valutakoersen
-        double euroToDollar = 1.09;
-        double pondToDollar = 1.26;
-        double yenToDollar = 0.0074;
-        double bitcoinToDollar = 28258.70;
 
         // Berekende variabele aanmaken
         double calculatedAmount = 0.0;
@@ -181,7 +176,23 @@ public class Main {
         scanner.close();
 
         // Bedrag berekenen
-        //TODO Controleren of rekenmethode echt werkt met delen door ding
+        //TODO Omschrijven naar methode
+        double result = calculateAmount(userCurrency, otherCurrency, userAmount);
+        printResult(userCurrency, otherCurrency, userAmount, result);
+        // waarom methode printResult? Omdat het kan..alles in methodes!!
+
+    }
+
+    /* Methode om bedrag om te zetten op basis van (1)begin valuta, (2)doel valuta en (3)bedrag in begin valuta.*/
+    private static double calculateAmount(String userCurrency, String otherCurrency, double userAmount) {
+        //resultaat variabele
+        double calculatedAmount = 0.0;
+        // Constante Variabele aanmaken voor valutakoersen
+        double euroToDollar = 1.09;
+        double pondToDollar = 1.26;
+        double yenToDollar = 0.0074;
+        double bitcoinToDollar = 28258.70;
+
         switch(userCurrency) {
             case "euro":
                 switch(otherCurrency) {
@@ -266,15 +277,17 @@ public class Main {
                 }
                 break;
         }
-
+        return calculatedAmount;
+    }
+    public static void printResult(String userCurrency, String otherCurrency, double userAmount, double result){
         // Output opbouwen
-            System.out.println("=========\n=========\n"
-                    + userAmount
-                    + userCurrency
-                    + " is "
-                    + calculatedAmount
-                    + " in "
-                    + otherCurrency
-                    + "\n=========\n=========\n");
+        System.out.println("=========\n=========\n"
+                + userAmount
+                + userCurrency
+                + " is "
+                + result
+                + " in "
+                + otherCurrency
+                + "\n=========\n=========\n");
     }
 }
