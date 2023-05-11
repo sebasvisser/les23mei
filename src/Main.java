@@ -156,8 +156,6 @@ public class Main {
 
         // Bedrag (in eigen valuta) vragen tot geldige input
         while(!validUserAmount){
-            // TODO De controle moet nog gefixt worden, nu komt een crash bij een niet double.
-            // Misschien next() en dan kijken of ik parse double kan doen?
             System.out.println("Welk bedrag wil je omrekenen?");
             String input = scanner.next();
             try {
