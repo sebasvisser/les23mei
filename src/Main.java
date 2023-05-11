@@ -6,19 +6,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
-        double userAmount = 0.0;
-        boolean validUserAmount = false;
         String userCurrency = "";
         boolean validUserCurrency = false;
         String otherCurrency = "";
         boolean validOtherCurrency = false;
 
-        // Berekende variabele aanmaken
-        double calculatedAmount = 0.0;
-
         // Scanner aanmaken voor bedrag
         Scanner scanner = new Scanner(System.in);
+
+        // String userCurrency = getCurrency(scanner, "DOEL");
+        // String otherCurrency = getCurrency(scanner, "START");
 
         // Eigen valuta opvragen tot geldige input komt
         while (!validUserCurrency){
@@ -150,7 +147,7 @@ public class Main {
         }
 
         // Bedrag (in eigen valuta) vragen tot geldige input via een mooie methode
-        userAmount = getUserAmount(scanner);
+        double userAmount = getUserAmount(scanner);
 
         // Scanner netjes sluiten
         scanner.close();
