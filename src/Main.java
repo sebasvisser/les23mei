@@ -152,16 +152,15 @@ public class Main {
         // Bedrag (in eigen valuta) vragen tot geldige input via een mooie methode
         userAmount = getUserAmount(scanner);
 
-
         // Scanner netjes sluiten
         scanner.close();
 
         // Eindbedrag berekenen
         double result = calculateAmount(userCurrency, otherCurrency, userAmount);
-        printResult(userCurrency, otherCurrency, userAmount, result);
         // Waarom methode printResult? Omdat het kan..alles in methodes!!
+        printResult(userCurrency, otherCurrency, userAmount, result);
 
-    }
+    } //einde main methode
 
     /* Methode om bedrag om te zetten op basis van (1)begin valuta, (2)doel valuta en (3)bedrag in begin valuta.*/
     private static double calculateAmount(String userCurrency, String otherCurrency, double userAmount) {
@@ -264,6 +263,7 @@ public class Main {
         // Output opbouwen
         System.out.println("=========\n=========\n"
                 + userAmount
+                + " "
                 + userCurrency
                 + " is "
                 + result
@@ -284,7 +284,7 @@ public class Main {
         }
     }
 
+    /* Methode om ...*/
 
 
-    // sluit haakje van main class
-}
+} // sluit haakje van main class
