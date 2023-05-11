@@ -47,7 +47,7 @@ public class Main {
                 case "euo":
                 case "€":
                     System.out.println("Je hebt ingegeven dat je EURO hebt.");
-                    userCurrency = "dollar";
+                    userCurrency = "euro";
                     validUserCurrency = true;
                     break;
                 case "p":
@@ -91,7 +91,7 @@ public class Main {
 
         // Doel valuta opvragen tot geldige input komt
         while (!validOtherCurrency){
-            System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar, Euro, Pond, Yen of Bitcoin?");
+            System.out.println("Welke valuta zou je graag willen? Dollar, Euro, Pond, Yen of Bitcoin?");
             otherCurrency = scanner.next();
             switch (otherCurrency) {
                 case "d":
@@ -161,7 +161,6 @@ public class Main {
             try {
                 userAmount = Double.parseDouble(input);
                 validUserAmount = true;
-
             } catch (NumberFormatException e) {
                 System.out.println(input
                         + " is geen bedrag. Goed dat je het is gelukt iets in te typen."
@@ -271,7 +270,6 @@ public class Main {
         // Output opbouwen
             System.out.println("=========\n=========\n"
                     + userAmount
-                    + " in "
                     + userCurrency
                     + " is "
                     + calculatedAmount
