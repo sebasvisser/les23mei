@@ -6,145 +6,16 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        String userCurrency = "";
-        boolean validUserCurrency = false;
-        String otherCurrency = "";
-        boolean validOtherCurrency = false;
 
         // Scanner aanmaken voor bedrag
         Scanner scanner = new Scanner(System.in);
 
-        // String userCurrency = getCurrency(scanner, "DOEL");
-        // String otherCurrency = getCurrency(scanner, "START");
-
-        // Eigen valuta opvragen tot geldige input komt
-        while (!validUserCurrency){
-            System.out.println("Welke valuta heb jij die je wilt omrekenen? Dollar, Euro, Pond, Yen of Bitcoin?");
-            userCurrency = scanner.next();
-            switch (userCurrency) {
-                case "d":
-                case "dollar":
-                case "D":
-                case "Dollar":
-                case "dolar":
-                case "$":
-                    System.out.println("Je hebt ingegeven dat je DOLLAR hebt.");
-                    userCurrency = "dollar";
-                    validUserCurrency = true;
-                    break;
-                case "e":
-                case "euro":
-                case "E":
-                case "Euro":
-                case "euo":
-                case "€":
-                    System.out.println("Je hebt ingegeven dat je EURO hebt.");
-                    userCurrency = "euro";
-                    validUserCurrency = true;
-                    break;
-                case "p":
-                case "pond":
-                case "P":
-                case "Pond":
-                case "pound":
-                case "Pound":
-                case "£":
-                    System.out.println("Je hebt ingegeven dat je POND hebt.");
-                    userCurrency = "pond";
-                    validUserCurrency = true;
-                    break;
-                case "y":
-                case "yen":
-                case "Y":
-                case "Yen":
-                case "jen":
-                case "Jen":
-                case "¥":
-                    System.out.println("Je hebt ingegeven dat je YEN hebt.");
-                    userCurrency = "yen";
-                    validUserCurrency = true;
-                    break;
-                case "b":
-                case "btc":
-                case "B":
-                case "Bitcoin":
-                case "bitcoin":
-                case "BTC":
-                case "₿":
-                    System.out.println("Je hebt ingegeven dat je BITCOIN hebt.");
-                    userCurrency = "bitcoin";
-                    validUserCurrency = true;
-                    break;
-                default:
-                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent.");
-                    break;
-            }
-        }
-
-        // Doel valuta opvragen tot geldige input komt
-        while (!validOtherCurrency){
-            System.out.println("Welke valuta zou je graag willen? Dollar, Euro, Pond, Yen of Bitcoin?");
-            otherCurrency = scanner.next();
-            switch (otherCurrency) {
-                case "d":
-                case "dollar":
-                case "D":
-                case "Dollar":
-                case "dolar":
-                case "$":
-                    System.out.println("Je hebt om wilt rekenen naar DOLLAR.");
-                    otherCurrency = "dollar";
-                    validOtherCurrency = true;
-                    break;
-                case "e":
-                case "euro":
-                case "E":
-                case "Euro":
-                case "euo":
-                case "€":
-                    System.out.println("Je hebt om wilt rekenen naar EURO.");
-                    otherCurrency = "euro";
-                    validOtherCurrency = true;
-                    break;
-                case "p":
-                case "pond":
-                case "P":
-                case "Pond":
-                case "pound":
-                case "Pound":
-                case "£":
-                    System.out.println("Je hebt ingegeven dat je POND.");
-                    otherCurrency = "pond";
-                    validOtherCurrency = true;
-                    break;
-                case "y":
-                case "yen":
-                case "Y":
-                case "Yen":
-                case "jen":
-                case "Jen":
-                case "¥":
-                    System.out.println("Je hebt om wilt rekenen naar YEN.");
-                    otherCurrency = "yen";
-                    validOtherCurrency = true;
-                    break;
-                case "b":
-                case "btc":
-                case "B":
-                case "Bitcoin":
-                case "bitcoin":
-                case "BTC":
-                case "bit":
-                case "₿":
-                    System.out.println("Je hebt om wilt rekenen naar BITCOIN.");
-                    otherCurrency = "bitcoin";
-                    validOtherCurrency = true;
-                    break;
-                default:
-                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent.");
-                    break;
-            }
-        }
+        //doel valuta opvragen
+        String userCurrency = getCurrency(scanner, "Wat is de gewenste DOEL valuta?"
+                + "\nJe kunt kiezen tussen Euro, Dollar, Yen en Bitcoin");
+        // begin valuta opvragen
+        String otherCurrency = getCurrency(scanner, "Wat is jouw START valuta?"
+                + "\nJe kunt kiezen tussen Euro, Dollar, Yen en Bitcoin");
 
         // Bedrag (in eigen valuta) vragen tot geldige input via een mooie methode
         double userAmount = getUserAmount(scanner);
@@ -281,33 +152,27 @@ public class Main {
         }
     }
 
-    /* Methode om valuta op te vragen*/
+    /* Methode om valuta op te vragen
+    * TODO default is nu bitcoin, maar eigenlijk is het netste als het opnieuw gaat.
+    *  */
     public static String getCurrency(Scanner scanner, String string){
-            System.out.println("Voer in de valuta die je wilt gebruiken als "
-                    + string
-                    + ". \nJe kunt kiezen tussen Dollar, Euro, Pond, Yen of Bitcoin.");
-            userCurrency = scanner.next();
-            switch (string) {
+            System.out.println(string);
+            String userCurrency = scanner.next();
+            switch (userCurrency) {
                 case "d":
                 case "dollar":
                 case "D":
                 case "Dollar":
                 case "dolar":
                 case "$":
-                    System.out.println("Je hebt ingegeven dat je DOLLAR hebt.");
-                    userCurrency = "dollar";
-                    validUserCurrency = true;
-                    break;
+                    return "dollar";
                 case "e":
                 case "euro":
                 case "E":
                 case "Euro":
                 case "euo":
                 case "€":
-                    System.out.println("Je hebt ingegeven dat je EURO hebt.");
-                    userCurrency = "euro";
-                    validUserCurrency = true;
-                    break;
+                    return "euro";
                 case "p":
                 case "pond":
                 case "P":
@@ -315,10 +180,7 @@ public class Main {
                 case "pound":
                 case "Pound":
                 case "£":
-                    System.out.println("Je hebt ingegeven dat je POND hebt.");
-                    userCurrency = "pond";
-                    validUserCurrency = true;
-                    break;
+                    return "pond";
                 case "y":
                 case "yen":
                 case "Y":
@@ -326,10 +188,7 @@ public class Main {
                 case "jen":
                 case "Jen":
                 case "¥":
-                    System.out.println("Je hebt ingegeven dat je YEN hebt.");
-                    userCurrency = "yen";
-                    validUserCurrency = true;
-                    break;
+                    return "yen";
                 case "b":
                 case "btc":
                 case "B":
@@ -337,20 +196,13 @@ public class Main {
                 case "bitcoin":
                 case "BTC":
                 case "₿":
-                    System.out.println("Je hebt ingegeven dat je BITCOIN hebt.");
-                    userCurrency = "bitcoin";
-                    validUserCurrency = true;
-                    break;
+                    return "bitcoin";
                 default:
-                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent.");
-                    break;
+                    System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent.\n"
+                    + "Om te zorgen dat je met de tijd meegaat doe ik netalsof je voor Bitcoin hebt gekozen.");
+                    return "bitcoin";
             }
         }
-
-
-
-        return result;
-    }
 
 
 } // sluit haakje van main class
