@@ -2,31 +2,53 @@
 
 // IMPORTS
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // Scanner aanmaken voor bedrag
+        // Scanner aanmaken
         Scanner scanner = new Scanner(System.in);
 
-        //doel valuta opvragen
-        String userCurrency = getCurrency(scanner, "Wat is de gewenste DOEL valuta?"
-                + "\nJe kunt kiezen tussen Euro, Dollar, Yen en Bitcoin");
-        // begin valuta opvragen
-        String otherCurrency = getCurrency(scanner, "Wat is jouw START valuta?"
-                + "\nJe kunt kiezen tussen Euro, Dollar, Yen en Bitcoin");
+        // Logbestand aanmaken voor alle conversies
+        ArrayList<String> log = new ArrayList<>();
 
-        // Bedrag (in eigen valuta) vragen tot geldige input via een mooie methode
-        double userAmount = getUserAmount(scanner);
+        boolean keepGoing = true;
+        while (keepGoing){
+            System.out.println("Type 1 nog een conversie te doen of 0 om te stoppen");
+            boolean doorgaan = scanner.nextBoolean();
+            if(doorgaan){
+                //doel valuta opvragen
+                String userCurrency = getCurrency(scanner, "Wat is de gewenste DOEL valuta?"
+                        + "\nJe kunt kiezen tussen Euro, Dollar, Yen en Bitcoin");
+                // begin valuta opvragen
+                String otherCurrency = getCurrency(scanner, "Wat is jouw START valuta?"
+                        + "\nJe kunt kiezen tussen Euro, Dollar, Yen en Bitcoin");
 
-        // Scanner netjes sluiten
-        scanner.close();
+                // Bedrag (in eigen valuta) vragen tot geldige input via een mooie methode
+                double userAmount = getUserAmount(scanner);
 
-        // Eindbedrag berekenen
-        double result = calculateAmount(userCurrency, otherCurrency, userAmount);
-        // Waarom methode printResult? Omdat het kan..alles in methodes!!
-        printResult(userCurrency, otherCurrency, userAmount, result);
+                // Scanner netjes sluiten
+                scanner.close();
+
+                // Eindbedrag berekenen
+                double result = calculateAmount(userCurrency, otherCurrency, userAmount);
+                // Waarom methode printResult? Omdat het kan..alles in methodes!!
+                String naarLog = printResult(userCurrency, otherCurrency, userAmount, result);
+                log.add(naarLog);
+
+            }else{
+                keepGoing = false;
+                System.out.println("Fijn dat ik wat voor je heb kunnen betekenen."
+                    + "\n"
+                    + " Je hebt de volgende conversies gemaakt:\n");
+                System.out.println(log);
+            }
+
+        }
+
+
 
     } //einde main methode
 
@@ -127,17 +149,20 @@ public class Main {
         return calculatedAmount;
     }
     /* Methode om resultaat in console te printen*/
-    public static void printResult(String userCurrency, String otherCurrency, double userAmount, double result){
+    public static String printResult(String userCurrency, String otherCurrency, double userAmount, double result){
         // Output opbouwen
-        System.out.println("=========\n=========\n"
-                + userAmount
+        String endResult = userAmount
                 + " "
                 + userCurrency
                 + " is "
                 + result
-                + " in "
-                + otherCurrency
+                + " "
+                + otherCurrency;
+        System.out.println("=========\n=========\n"
+                + endResult
                 + "\n=========\n=========\n");
+        // een return zodat er een log gemaakt kan worden.
+        return endResult;
     }
 
     /* Methode om bedrag op te vragen */
@@ -199,7 +224,7 @@ public class Main {
                     return "bitcoin";
                 default:
                     System.out.println("Ik snap niet wat je hebt. Maar toch fijn dat je er bent.\n"
-                    + "Om te zorgen dat je met de tijd meegaat doe ik netalsof je voor Bitcoin hebt gekozen.");
+                    + "Om te zorgen dat je met de tijd meegaat doe ik net alsof je voor Bitcoin hebt gekozen.");
                     return "bitcoin";
             }
         }
