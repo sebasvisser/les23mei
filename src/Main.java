@@ -149,37 +149,17 @@ public class Main {
             }
         }
 
-        // Bedrag (in eigen valuta) vragen tot geldige input
-        while(!validUserAmount){
-            System.out.println("Welk bedrag wil je omrekenen?");
-            String input = scanner.next();
-            try {
-                userAmount = Double.parseDouble(input);
-                validUserAmount = true;
-            } catch (NumberFormatException e) {
-                System.out.println(input
-                        + " is geen bedrag. Goed dat je het is gelukt iets in te typen."
-                        + "\nLaten we het opnieuw proberen.");
-            }
-        }
+        // Bedrag (in eigen valuta) vragen tot geldige input via een mooie methode
+        userAmount = getUserAmount(scanner);
 
-        // Bevestiging van input compleet
-        System.out.println("Je hebt ingegeven dat je: "
-                + userAmount
-                + " wilt converteren van "
-                + userCurrency
-                + " naar "
-                + otherCurrency
-                + ".");
 
         // Scanner netjes sluiten
         scanner.close();
 
-        // Bedrag berekenen
-        //TODO Omschrijven naar methode
+        // Eindbedrag berekenen
         double result = calculateAmount(userCurrency, otherCurrency, userAmount);
         printResult(userCurrency, otherCurrency, userAmount, result);
-        // waarom methode printResult? Omdat het kan..alles in methodes!!
+        // Waarom methode printResult? Omdat het kan..alles in methodes!!
 
     }
 
@@ -279,6 +259,7 @@ public class Main {
         }
         return calculatedAmount;
     }
+    /* Methode om resultaat in console te printen*/
     public static void printResult(String userCurrency, String otherCurrency, double userAmount, double result){
         // Output opbouwen
         System.out.println("=========\n=========\n"
@@ -290,4 +271,20 @@ public class Main {
                 + otherCurrency
                 + "\n=========\n=========\n");
     }
+
+    /* Methode om bedrag op te vragen */
+    private static double getUserAmount(Scanner scanner) {
+        System.out.println("Voer het bedrag dat je wilt omzetten in:");
+        while (true) {
+            try {
+                return Double.parseDouble(scanner.next());
+            } catch (NumberFormatException e) {
+                System.out.println("Dit is geen geldig bedrag, probeer opnieuw.");
+            }
+        }
+    }
+
+
+
+    // sluit haakje van main class
 }
