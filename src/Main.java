@@ -16,7 +16,7 @@ public class Main {
 
         boolean keepGoing = true;
         while (keepGoing){
-            System.out.println("Type 1 nog een conversie te doen of 0 om te stoppen");
+            System.out.println("Type TRUE om een conversie te doen of FALSE om te stoppen");
             boolean doorgaan = scanner.nextBoolean();
             if(doorgaan){
                 //doel valuta opvragen
@@ -28,9 +28,6 @@ public class Main {
 
                 // Bedrag (in eigen valuta) vragen tot geldige input via een mooie methode
                 double userAmount = getUserAmount(scanner);
-
-                // Scanner netjes sluiten
-                scanner.close();
 
                 // Eindbedrag berekenen
                 double result = calculateAmount(userCurrency, otherCurrency, userAmount);
@@ -47,9 +44,8 @@ public class Main {
             }
 
         }
-
-
-
+        // Scanner netjes sluiten
+        scanner.close();
     } //einde main methode
 
     /* Methode om bedrag om te zetten op basis van (1)begin valuta, (2)doel valuta en (3)bedrag in begin valuta.*/
@@ -149,7 +145,7 @@ public class Main {
         return calculatedAmount;
     }
     /* Methode om resultaat in console te printen*/
-    public static String printResult(String userCurrency, String otherCurrency, double userAmount, double result){
+    private static String printResult(String userCurrency, String otherCurrency, double userAmount, double result){
         // Output opbouwen
         String endResult = userAmount
                 + " "
@@ -180,7 +176,7 @@ public class Main {
     /* Methode om valuta op te vragen
     * TODO default is nu bitcoin, maar eigenlijk is het netste als het opnieuw gaat.
     *  */
-    public static String getCurrency(Scanner scanner, String string){
+    private static String getCurrency(Scanner scanner, String string){
             System.out.println(string);
             String userCurrency = scanner.next();
             switch (userCurrency) {
